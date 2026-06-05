@@ -1,4 +1,4 @@
-# 🌿 Eco Dry Cleaners — Web App
+#  Eco Dry Cleaners — Web App
 
 A full-featured React web application for an eco-friendly laundry service business.
 
@@ -71,4 +71,4 @@ npm run build
 ```
 
 ---
-Made with 🌿 for a cleaner world.
+Made for a cleaner world.

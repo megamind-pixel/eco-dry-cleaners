@@ -8,7 +8,7 @@ export default function Footer() {
       <div style={styles.container}>
         <div style={styles.grid}>
           <div>
-            <div style={styles.logo}>🌿 Eco <strong>Dry Cleaners</strong></div>
+            <div style={styles.logo}> Eco <strong>Dry Cleaners</strong></div>
             <p style={styles.desc}>Eco-friendly laundry solutions delivered to your doorstep. Sustainable cleaning, exceptional care.</p>
             <div style={styles.socials}>
               <a href="#!" style={styles.social}><Share2 size={18} /></a>
@@ -30,15 +30,15 @@ export default function Footer() {
           </div>
           <div>
             <h4 style={styles.colTitle}>Contact</h4>
-            <div style={styles.contactItem}><MapPin size={15} /> 123 Green Street, Nairobi, Kenya</div>
-            <div style={styles.contactItem}><Phone size={15} /> +254 700 123 456</div>
-            <div style={styles.contactItem}><Mail size={15} /> info@ecodrycleaners.com</div>
+            <div style={styles.contactItem}><MapPin size={15} /> 123 Ottawa, Ontario, Canada</div>
+            <div style={styles.contactItem}><Phone size={15} /> ++1 (343) 553-8919</div>
+            <div style={styles.contactItem}><Mail size={15} /> clean@ecodrycleaners.ca</div>
             <div style={styles.contactItem}><Clock size={15} /> Mon–Sat: 7:00AM – 8:00PM</div>
           </div>
         </div>
         <div style={styles.bottom}>
           <span>© 2024 Eco Dry Cleaners. All rights reserved.</span>
-          <span>Made with 🌿 for a cleaner world</span>
+          <span>Convenience and quality</span>
         </div>
       </div>
     </footer>

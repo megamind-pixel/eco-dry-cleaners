@@ -5,7 +5,7 @@ const AppContext = createContext();
 
 export const useApp = () => useContext(AppContext);
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 // Set up axios defaults
 const api = axios.create({
@@ -15,6 +15,7 @@ const api = axios.create({
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,22 +23,33 @@ export const AppProvider = ({ children }) => {
     const token = localStorage.getItem('edc_token');
     const savedUser = localStorage.getItem('edc_user');
     if (token && savedUser) {
-      setUser(JSON.parse(savedUser));
+      const parsedUser = JSON.parse(savedUser);
+      setUser(parsedUser);
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchData();
+      fetchData(parsedUser);
     } else {
       setLoading(false);
     }
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async (currentUser = user) => {
     try {
-      const [ordersRes, notifsRes] = await Promise.all([
+      const requests = [
         api.get('/orders'),
         api.get('/notifications')
-      ]);
-      setOrders(ordersRes.data);
-      setNotifications(notifsRes.data);
+      ];
+
+      if (currentUser && currentUser.role === 'admin') {
+        requests.push(api.get('/auth/users'));
+      }
+
+      const results = await Promise.all(requests);
+      setOrders(results[0].data);
+      setNotifications(results[1].data);
+      
+      if (currentUser && currentUser.role === 'admin') {
+        setUsers(results[2].data);
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -162,7 +174,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={{
       user, login, logout, register, loading,
-      orders, addOrder, updateOrderStatus, updatePaymentStatus, triggerMpesa, getUserOrders,
+      orders, users, addOrder, updateOrderStatus, updatePaymentStatus, triggerMpesa, getUserOrders,
       notifications, markNotificationsRead,
     }}>
       {children}

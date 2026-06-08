@@ -14,7 +14,7 @@ const STATUS_COLORS = {
 };
 
 export default function Admin() {
-  const { user, orders, users, updateOrderStatus, logout } = useApp();
+  const { user, orders = [], users = [], updateOrderStatus, logout } = useApp();
   const navigate = useNavigate();
   const [tab, setTab] = useState('dashboard');
   const [filter, setFilter] = useState('');

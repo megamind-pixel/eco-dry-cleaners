@@ -25,9 +25,18 @@ app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/payments', require('./routes/paymentRoutes'));
 
-app.get('/', (req, res) => {
-  res.send('Eco Dry Cleaners API is running...');
-});
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../', 'build', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('Eco Dry Cleaners API is running...');
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

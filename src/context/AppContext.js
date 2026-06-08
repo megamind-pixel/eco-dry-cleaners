@@ -7,7 +7,7 @@ export const useApp = () => useContext(AppContext);
 
 const API_URL = 'http://localhost:5000/api';
 
-// Set up axios defaults
+
 const api = axios.create({
   baseURL: API_URL,
 });
@@ -86,7 +86,7 @@ export const AppProvider = ({ children }) => {
 
   const addOrder = async (orderData) => {
     try {
-      // Use FormData if there are images, otherwise JSON
+   
       let data;
       let headers = {};
       

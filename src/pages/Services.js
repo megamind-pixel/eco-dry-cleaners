@@ -32,15 +32,15 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <div>
+    <div style={{ overflowX: 'hidden' }}>
       <div style={styles.hero}>
         <h1 style={styles.heroTitle}>Our Services</h1>
         <p style={styles.heroSub}>Professional eco-friendly laundry care for every need</p>
       </div>
       <div style={styles.container}>
         {SERVICES.map((s, i) => (
-          <div key={s.name} className="card" style={{ ...styles.serviceCard, ...(i % 2 === 1 ? styles.altCard : {}) }}>
-            <div style={styles.serviceIconBox}>{s.icon}</div>
+          <div key={s.name} className="card service-page-card" style={{ ...styles.serviceCard, ...(i % 2 === 1 ? styles.altCard : {}) }}>
+            <div style={styles.serviceIconBox} className="service-icon-box">{s.icon}</div>
             <div style={styles.serviceBody}>
               <div style={styles.servicePrice}>{s.price}</div>
               <h2 style={styles.serviceName}>{s.name}</h2>

@@ -142,14 +142,14 @@ export default function Booking() {
           ))}
         </div>
 
-        <div style={styles.layout}>
+        <div style={styles.layout} className="booking-layout">
           <div style={styles.formArea}>
 
             {/* Step 1: Service */}
             {step === 1 && (
               <div className="card">
                 <h2 style={styles.stepTitle}>Select Service Type</h2>
-                <div style={styles.servicesGrid}>
+                <div style={styles.servicesGrid} className="responsive-booking-grid">
                   {SERVICES.map(s => (
                     <div key={s.id} onClick={() => setForm({...form, serviceType: s.id})}
                       style={{ ...styles.serviceCard, ...(form.serviceType === s.id ? styles.serviceSelected : {}) }}>
@@ -163,7 +163,7 @@ export default function Booking() {
                 {form.serviceType && (
                   <>
                     <h2 style={{ ...styles.stepTitle, marginTop: 32 }}>Choose Package</h2>
-                    <div style={styles.packagesGrid}>
+                    <div style={styles.packagesGrid} className="responsive-booking-grid">
                       {PACKAGES.map(p => (
                         <div key={p.id} onClick={() => setForm({...form, package: p.id})}
                           style={{ ...styles.packageCard, ...(form.package === p.id ? styles.packageSelected : {}) }}>

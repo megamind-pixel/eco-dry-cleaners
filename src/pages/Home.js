@@ -32,14 +32,14 @@ const testimonials = [
 
 export default function Home() {
   return (
-    <div>
+    <div style={{ overflowX: 'hidden' }}>
       {/* Hero */}
-      <section style={styles.hero}>
+      <section style={styles.hero} className="responsive-hero">
         <div style={styles.heroContent}>
           <div style={styles.heroBadge}>🌿 Eco-Friendly Laundry</div>
           <h1 style={styles.heroTitle}>Eco-Friendly<br />Laundry Solutions<br /><em>Delivered to You</em></h1>
           <p style={styles.heroDesc}>Sustainable cleaning, exceptional care. Book your laundry service online and we'll handle the rest — pickup, cleaning, and delivery.</p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'inherit' }}>
             <Link to="/booking" className="btn btn-primary" style={{ fontSize: 16, padding: '14px 32px' }}>
               Book a Service <ArrowRight size={18} />
             </Link>
@@ -47,13 +47,13 @@ export default function Home() {
               Track Order
             </Link>
           </div>
-          <div style={styles.heroFeatures}>
+          <div style={styles.heroFeatures} className="hide-mobile">
             {['Eco-Friendly Products', 'Free Pickup & Delivery', 'Same-Day Express'].map(f => (
               <span key={f} style={styles.heroFeature}><CheckCircle size={15} color="#52B788" /> {f}</span>
             ))}
           </div>
         </div>
-        <div style={styles.heroImage}>
+        <div style={styles.heroImage} className="hide-mobile">
           <div style={styles.heroImageInner}>
             <div style={styles.heroEmoji}>👗</div>
             <div style={styles.heroCircle}></div>
@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* Stats */}
       <section style={styles.statsSection}>
-        <div style={styles.statsGrid}>
+        <div style={styles.statsGrid} className="responsive-grid">
           {stats.map(s => (
             <div key={s.label} style={styles.statCard}>
               <div style={styles.statIcon}>{s.icon}</div>
@@ -81,7 +81,7 @@ export default function Home() {
             <h2 className="section-title">Our Services</h2>
             <p className="section-sub">Premium laundry care for every need</p>
           </div>
-          <div style={styles.servicesGrid}>
+          <div style={styles.servicesGrid} className="responsive-grid">
             {services.map(s => (
               <div key={s.name} style={styles.serviceCard} className="card">
                 <div style={styles.serviceIcon}>{s.icon}</div>
@@ -101,11 +101,10 @@ export default function Home() {
             <h2 className="section-title">How It Works</h2>
             <p className="section-sub">Simple, convenient, and reliable</p>
           </div>
-          <div style={styles.stepsGrid}>
+          <div style={styles.stepsGrid} className="responsive-grid">
             {steps.map((step, i) => (
               <div key={step.num} style={styles.stepCard}>
                 <div style={styles.stepNum}>{step.num}</div>
-                {i < steps.length - 1 && <div style={styles.stepLine}></div>}
                 <h3 style={styles.stepTitle}>{step.title}</h3>
                 <p style={styles.stepDesc}>{step.desc}</p>
               </div>

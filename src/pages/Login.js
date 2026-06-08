@@ -77,14 +77,6 @@ export default function Login() {
           Don't have an account? <Link to="/register" style={styles.switchLink}>Sign Up</Link>
         </p>
 
-        <div style={styles.divider}><span>or try demo</span></div>
-        <div style={{ display: 'flex', gap: 10, flexDirection: 'column' }}>
-          <button className="btn btn-outline btn-sm" style={{ width: '100%', justifyContent: 'center' }}
-            onClick={() => { setForm({ email: 'admin@ecodrycleaners.com', password: 'admin123' }); }}>
-            Fill Admin Credentials
-          </button>
-        </div>
-
         <div style={styles.trustBadges}>
           {['Secure', 'Fast', 'Reliable', 'Eco-Friendly'].map(b => (
             <span key={b} style={styles.trustBadge}>✓ {b}</span>

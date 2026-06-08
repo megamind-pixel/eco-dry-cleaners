@@ -7,6 +7,7 @@ export default function Navbar() {
   const { user, logout, notifications } = useApp();
   const navigate = useNavigate();
   const location = useLocation();
+  const [navOpen, setNavOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
 
@@ -14,6 +15,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
+    setNavOpen(false);
     navigate('/');
   };
 
@@ -22,12 +24,12 @@ export default function Navbar() {
   return (
     <nav style={styles.nav}>
       <div style={styles.container}>
-        <Link to="/" style={styles.logo}>
-          
+        <Link to="/" style={styles.logo} onClick={() => setNavOpen(false)}>
           <span>Eco <strong>Dry Cleaners</strong></span>
         </Link>
 
-        <div style={styles.links}>
+        {/* Desktop Links */}
+        <div style={styles.links} className="hide-mobile">
           <Link to="/" style={{ ...styles.link, ...(isActive('/') ? styles.linkActive : {}) }}>Home</Link>
           <Link to="/services" style={{ ...styles.link, ...(isActive('/services') ? styles.linkActive : {}) }}>Services</Link>
           <Link to="/tracking" style={{ ...styles.link, ...(isActive('/tracking') ? styles.linkActive : {}) }}>Track Order</Link>
@@ -39,7 +41,7 @@ export default function Navbar() {
             <>
               {/* Notifications */}
               <div style={styles.notifWrapper}>
-                <button style={styles.iconBtn} onClick={() => setNotifOpen(!notifOpen)}>
+                <button style={styles.iconBtn} onClick={() => { setNotifOpen(!notifOpen); setMenuOpen(false); }}>
                   <Bell size={20} />
                   {unread > 0 && <span style={styles.badge}>{unread}</span>}
                 </button>
@@ -66,9 +68,9 @@ export default function Navbar() {
 
               {/* User Menu */}
               <div style={styles.notifWrapper}>
-                <button style={styles.userBtn} onClick={() => setMenuOpen(!menuOpen)}>
+                <button style={styles.userBtn} onClick={() => { setMenuOpen(!menuOpen); setNotifOpen(false); }}>
                   <div style={styles.avatar}>{user.name?.[0]?.toUpperCase()}</div>
-                  <span style={{ fontSize: 14, fontWeight: 600 }}>{user.name?.split(' ')[0]}</span>
+                  <span className="hide-mobile" style={{ fontSize: 14, fontWeight: 600 }}>{user.name?.split(' ')[0]}</span>
                 </button>
                 {menuOpen && (
                   <div style={styles.dropdown}>
@@ -92,13 +94,33 @@ export default function Navbar() {
               </div>
             </>
           ) : (
-            <div style={{ display: 'flex', gap: 12 }}>
+            <div style={{ display: 'flex', gap: 12 }} className="hide-mobile">
               <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
               <Link to="/register" className="btn btn-primary btn-sm">Sign Up</Link>
             </div>
           )}
+
+          <button style={styles.mobileMenuBtn} className="show-mobile" onClick={() => setNavOpen(!navOpen)}>
+            {navOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Nav Menu */}
+      {navOpen && (
+        <div style={styles.mobileNav}>
+          <Link to="/" style={styles.mobileNavLink} onClick={() => setNavOpen(false)}>Home</Link>
+          <Link to="/services" style={styles.mobileNavLink} onClick={() => setNavOpen(false)}>Services</Link>
+          <Link to="/tracking" style={styles.mobileNavLink} onClick={() => setNavOpen(false)}>Track Order</Link>
+          <Link to="/contact" style={styles.mobileNavLink} onClick={() => setNavOpen(false)}>Contact</Link>
+          {!user && (
+            <div style={{ padding: '20px 0', borderTop: '1px solid #F3F4F6', display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <Link to="/login" className="btn btn-outline" onClick={() => setNavOpen(false)} style={{ justifyContent: 'center' }}>Login</Link>
+              <Link to="/register" className="btn btn-primary" onClick={() => setNavOpen(false)} style={{ justifyContent: 'center' }}>Sign Up</Link>
+            </div>
+          )}
+        </div>
+      )}
     </nav>
   );
 }
@@ -125,4 +147,7 @@ const styles = {
   dropdown: { position: 'absolute', right: 0, top: 48, width: 200, background: 'white', borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.16)', overflow: 'hidden', zIndex: 1000 },
   dropItem: { display: 'flex', alignItems: 'center', gap: 10, padding: '13px 18px', fontSize: 14, color: '#374151', cursor: 'pointer', border: 'none', background: 'none', width: '100%', textAlign: 'left', textDecoration: 'none', fontFamily: 'DM Sans, sans-serif', fontWeight: 500, transition: 'background 0.15s' },
   dropDanger: { color: '#EF4444' },
+  mobileMenuBtn: { background: 'none', border: 'none', color: '#2D6A4F', cursor: 'pointer', padding: 4 },
+  mobileNav: { position: 'absolute', top: 68, left: 0, right: 0, background: 'white', padding: '12px 24px 24px', display: 'flex', flexDirection: 'column', boxShadow: '0 8px 12px rgba(0,0,0,0.08)', borderTop: '1px solid #F3F4F6' },
+  mobileNavLink: { padding: '14px 0', fontSize: 16, color: '#1F2937', fontWeight: 500, textDecoration: 'none', borderBottom: '1px solid #F9FAFB' },
 };

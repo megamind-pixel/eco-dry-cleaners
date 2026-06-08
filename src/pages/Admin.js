@@ -65,9 +65,9 @@ export default function Admin() {
   ];
 
   return (
-    <div style={styles.layout}>
+    <div style={styles.layout} className="admin-layout">
       {/* Sidebar */}
-      <div style={styles.sidebar}>
+      <div style={styles.sidebar} className="admin-sidebar hide-mobile">
         <div style={styles.sidebarLogo}>🌿 <strong>Eco Admin</strong></div>
         <nav>
           {tabs.map(t => (
@@ -90,19 +90,24 @@ export default function Admin() {
       </div>
 
       {/* Main */}
-      <div style={styles.main}>
+      <div style={styles.main} className="admin-main">
         {/* Header */}
         <div style={styles.topBar}>
           <div>
             <h1 style={styles.pageTitle}>{tabs.find(t => t.id === tab)?.label}</h1>
             <p style={{ color: '#6B7280', fontSize: 14 }}>Welcome back, Admin</p>
           </div>
+          <div className="show-mobile">
+             <select value={tab} onChange={e => setTab(e.target.value)} className="form-control" style={{ width: 140 }}>
+                {tabs.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
+             </select>
+          </div>
         </div>
 
         {/* Dashboard Tab */}
         {tab === 'dashboard' && (
           <div>
-            <div className="grid-4" style={{ marginBottom: 28 }}>
+            <div className="grid-4 admin-stats" style={{ marginBottom: 28 }}>
               {[
                 { label: 'Total Bookings', value: orders.length, icon: <Package size={22} />, color: '#2D6A4F' },
                 { label: 'Active Orders', value: activeOrders, icon: <TrendingUp size={22} />, color: '#F4A261' },
@@ -117,7 +122,7 @@ export default function Admin() {
               ))}
             </div>
 
-            <div style={styles.chartsGrid}>
+            <div style={styles.chartsGrid} className="admin-charts">
               <div className="card">
                 <h3 style={styles.chartTitle}>Revenue by Service</h3>
                 {revenueData.length > 0 ? (

@@ -23,7 +23,7 @@ export default function Navbar() {
     <nav style={styles.nav}>
       <div style={styles.container}>
         <Link to="/" style={styles.logo}>
-          <div style={styles.logoIcon}>🌿</div>
+          
           <span>Eco <strong>Dry Cleaners</strong></span>
         </Link>
 

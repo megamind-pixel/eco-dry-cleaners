@@ -80,7 +80,7 @@ export default function Booking() {
         deliveryFee: DELIVERY_FEE,
         subtotal,
         total,
-        images: imageFiles, // Pass the File objects
+        images: imageFiles, 
       });
       setSuccess(order);
     } catch (err) {

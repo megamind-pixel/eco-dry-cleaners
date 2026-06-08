@@ -34,7 +34,7 @@ export default function Admin() {
   const activeOrders = orders.filter(o => o.status !== 'Delivered').length;
   const deliveredOrders = orders.filter(o => o.status === 'Delivered').length;
 
-  // Revenue chart data (by service)
+
   const revenueByService = orders.reduce((acc, o) => {
     if (o.paymentStatus === 'Paid') {
       acc[o.serviceType] = (acc[o.serviceType] || 0) + Number(o.total || 0);
@@ -43,7 +43,7 @@ export default function Admin() {
   }, {});
   const revenueData = Object.entries(revenueByService).map(([name, value]) => ({ name, value }));
 
-  // Service distribution
+
   const serviceDistrib = orders.reduce((acc, o) => {
     acc[o.serviceType] = (acc[o.serviceType] || 0) + 1;
     return acc;

@@ -27,7 +27,7 @@ export default function Contact() {
           <div>
             <div className="card" style={styles.infoCard}>
               <h2 style={styles.infoTitle}>Our Location</h2>
-              <div style={styles.infoItem}><MapPin size={20} color="#2D6A4F" /><div><div style={{ fontWeight: 600 }}>Address</div><div style={styles.infoText}>123 Green Street, Westlands<br />Nairobi, Kenya</div></div></div>
+              <div style={styles.infoItem}><MapPin size={20} color="#2D6A4F" /><div><div style={{ fontWeight: 600 }}>Address</div><div style={styles.infoText}>Ottawa, Ontario<br />Canada</div></div></div>
               <div style={styles.infoItem}><Phone size={20} color="#2D6A4F" /><div><div style={{ fontWeight: 600 }}>Phone</div><div style={styles.infoText}>+1 (343) 553-89196</div></div></div>
               <div style={styles.infoItem}><Mail size={20} color="#2D6A4F" /><div><div style={{ fontWeight: 600 }}>Email</div><div style={styles.infoText}>clean@ecodrycleaners.ca</div></div></div>
               <div style={styles.infoItem}><Clock size={20} color="#2D6A4F" /><div><div style={{ fontWeight: 600 }}>Hours</div><div style={styles.infoText}>Mon – Sat: 7:00 AM – 8:00 PM<br />Sun: 9:00 AM – 5:00 PM</div></div></div>

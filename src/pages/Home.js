@@ -36,7 +36,7 @@ export default function Home() {
       {/* Hero */}
       <section style={styles.hero} className="responsive-hero">
         <div style={styles.heroContent}>
-          <div style={styles.heroBadge}>🌿 Eco-Friendly Laundry</div>
+          <div style={styles.heroBadge}>Eco-Friendly Laundry</div>
           <h1 style={styles.heroTitle}>Eco-Friendly<br />Laundry Solutions<br /><em>Delivered to You</em></h1>
           <p style={styles.heroDesc}>Sustainable cleaning, exceptional care. Book your laundry service online and we'll handle the rest — pickup, cleaning, and delivery.</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'inherit' }}>

@@ -31,13 +31,13 @@ export default function Footer() {
           <div>
             <h4 style={styles.colTitle}>Contact</h4>
             <div style={styles.contactItem}><MapPin size={15} /> 123 Ottawa, Ontario, Canada</div>
-            <div style={styles.contactItem}><Phone size={15} /> ++1 (343) 553-8919</div>
+            <div style={styles.contactItem}><Phone size={15} /> +1 (343) 553-8919</div>
             <div style={styles.contactItem}><Mail size={15} /> clean@ecodrycleaners.ca</div>
             <div style={styles.contactItem}><Clock size={15} /> Mon–Sat: 7:00AM – 8:00PM</div>
           </div>
         </div>
         <div style={styles.bottom}>
-          <span>© 2024 Eco Dry Cleaners. All rights reserved.</span>
+          <span>© 2026 Eco Dry Cleaners. All rights reserved.</span>
           <span>Convenience and quality</span>
         </div>
       </div>
